@@ -14,18 +14,19 @@ class baek__14888 {
             nums[i] = Integer.parseInt(temp[i]);
         }
 
-        int[] ops = new int[n - 1];
+        ArrayList<Integer> operator = new ArrayList<>();
         int m = 0;
         temp = br.readLine().split(" ");
         for (int i = 0; i < 4; i++) {
             int k = Integer.parseInt(temp[i]);
 
             while (k-- > 0) {
-                ops[m++] = i;
+                operator.add(i);
             }
         }
 
-        Arrays.sort(ops);
+        Collections.sort(operator);
+        Integer[] ops = operator.toArray(new Integer[operator.size()]);
 
         ArrayList<Integer> answer = new ArrayList<>();
         do {
@@ -38,7 +39,7 @@ class baek__14888 {
         System.out.println(answer.get(0));
     }
 
-    static Integer calc(int[] operators, int[] nums) {
+    static Integer calc(Integer[] operators, int[] nums) {
         Integer sum = nums[0];
 
         for (int i = 0; i < operators.length; i++) {
@@ -56,7 +57,7 @@ class baek__14888 {
         return sum;
     }
 
-    static boolean next_permutation(int[] arr) {
+    static boolean next_permutation(Integer[] arr) {
         int start = -1;
         int k = arr.length;
 
@@ -89,7 +90,7 @@ class baek__14888 {
         return true;
     }
 
-    static void swap(int[] arr, int index1, int index2) {
+    static void swap(Integer[] arr, int index1, int index2) {
         int temp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = temp;
