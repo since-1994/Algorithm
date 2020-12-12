@@ -9,7 +9,8 @@
     1074는 쉬운 문제이지만 까다로운 부분이 시간과 메모리 관리이다. 분할 정복을 사용하여서 하지 않아도 되는 것은 쳐내는게 매우 중요하다.
 <div markdown="1">
         ```
-        static void solve(int x, int y, int n) {
+
+    static void solve(int x, int y, int n) {
         if (n == 1) {
             return;
         }
