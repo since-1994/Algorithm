@@ -1,0 +1,154 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__1074<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__1074",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__10815<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__10815",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__10816<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__10816",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__11729<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__11729",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__11782<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__11782",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__1201<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__1201",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__1202<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__1202",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__12886<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__12886",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__12970<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__12970",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__1339<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__1339",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__14888<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__14888",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__1517<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__1517",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__1654<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__1654",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__16928<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__16928",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__1790<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__1790",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__2109<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__2109",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__2448<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__2448",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__2529<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__2529",
+            "projectName": "algorithm_f896b730"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch)-baek__9019<algorithm_f896b730>",
+            "request": "launch",
+            "mainClass": "baek__9019",
+            "projectName": "algorithm_f896b730"
+        }
+    ]
+}
