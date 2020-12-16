@@ -2,74 +2,77 @@ import java.io.*;
 import java.util.*;
 
 class baek__1201 {
-
-    static int n;
-    static int m;
-    static int k;
-
-    static int[] a;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String[] temp = br.readLine().split(" ");
 
-        n = Integer.parseInt(temp[0]);
-        m = Integer.parseInt(temp[1]);
-        k = Integer.parseInt(temp[2]);
+        int n = Integer.parseInt(temp[0]);
+        int m = Integer.parseInt(temp[1]);
+        int k = Integer.parseInt(temp[2]);
 
-        if (n < (m + k - 1)) {
+        if (m + k - 1 > n) {
             System.out.print(-1);
             return;
-        } else if (m * k < n) {
+        }
+        if (m * k < n) {
             System.out.print(-1);
             return;
         }
 
-        a = new int[n];
-
-        for (int i = 1; i < n + 1; i++) {
-            a[i - 1] = i;
+        int idx = 0;
+        int[] index = new int[m];
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = i + 1;
         }
+        n -= k;
+        index[idx++] = k; // k번째는 포함하지 말자.
+        m -= 1;
+        m = m == 0 ? 1 : m;
 
-        ArrayList<Integer> g = new ArrayList<>();
+        int i = n / m; // 최초m이 1이었다면 방금 집합 만든걸로 끝났어야 한다. 그래서 i는 0이고 n도 0이다.
+        int r = n % m;
 
-        g.add(0);
-        g.add(k);
-
-        int addedNum = m - 1 == 0 ? 1 : (n - k) / (m - 1);
-        int remain = m - 1 == 0 ? 0 : (n - k) % (m - 1);
-        int next = m - 1 == 0 ? 0 : k + addedNum;
-
-        while (next < n + 1) {
-            if (remain == 0) {
-                g.add(next);
+        while (n > 0) {
+            if (r > 0) {
+                n -= 1 + i;
+                r -= 1;
+                index[idx] = index[idx - 1] + i + 1;
+                idx++;
             } else {
-                g.add(next + 1);
-                next += 1;
-                remain -= 1;
+                n -= i;
+                index[idx] = index[idx - 1] + i;
+                idx++;
             }
-            next += addedNum;
         }
 
-        for (int i = 0; i < g.size() - 1; i++) {
-            makeReverse(g.get(i), g.get(i + 1) - 1);
+        int[] answer = new int[arr.length];
+        int idx_answer = 0;
+        Stack<Integer> st = new Stack<>();
+
+        for (int j = 0; j < index.length; j++) {
+            if (j == 0) {
+                for (int a = 0; a < index[j]; a++) {
+                    st.add(arr[a]);
+                }
+                while (!st.isEmpty()) {
+                    answer[idx_answer++] = st.pop();
+                }
+            } else {
+                for (int a = index[j - 1]; a < index[j]; a++) {
+                    st.add(arr[a]);
+                }
+                while (!st.isEmpty()) {
+                    answer[idx_answer++] = st.pop();
+                }
+            }
         }
 
-        for (int i = 0; i < a.length; i++) {
-            System.out.print(a[i] + " ");
+        for (int item : answer) {
+            System.out.print(item + " ");
         }
+        System.out.println();
 
-    }
-
-    static void makeReverse(int start, int end) {
-        while (start < end) {
-            int temp = a[start];
-            a[start] = a[end];
-            a[end] = temp;
-
-            start++;
-            end--;
-        }
     }
 }
