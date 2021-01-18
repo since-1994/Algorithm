@@ -93,3 +93,63 @@
 // }
 // }
 // }
+
+import java.io.*;
+import java.util.*;
+
+class baek__1891 {
+    static long targetX = -1;
+    static long targetY = -1;
+    static String ans = "";
+    static int[] dx = { 0, 0, 1, 1 };
+    static int[] dy = { 1, 0, 0, 1 };
+
+    static void go(long x, long y, long len, String target, String now) {
+        if (len == 1) {
+            if (target.equals(now)) {
+                targetX = x;
+                targetY = y;
+            }
+            return;
+        }
+        long nextLen = len / 2;
+        for (int k = 0; k < 4; k++) {
+            if (target.charAt(now.length()) == (char) (k + 1 + '0')) {
+                go(x + dx[k] * nextLen, y + dy[k] * nextLen, nextLen, target, now + Integer.toString(k + 1));
+            }
+        }
+    }
+
+    static void go2(long x, long y, long len, long r, long c, String now) {
+        if (len == 1) {
+            if (targetX - c == x && targetY + r == y) {
+                ans = now;
+            }
+            return;
+        }
+        long nextLen = len / 2;
+        for (int k = 0; k < 4; k++) {
+            if (x + dx[k] * nextLen <= targetX - c && targetX - c <= x + dx[k] * nextLen + nextLen - 1
+                    && y + dy[k] * nextLen <= targetY + r && y + dy[k] * nextLen + nextLen - 1 >= targetY + r) {
+                go2(x + dx[k] * nextLen, y + dy[k] * nextLen, nextLen, r, c, now + Integer.toString(k + 1));
+            }
+        }
+    }
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        String[] temp = br.readLine().split(" ");
+
+        int d = Integer.parseInt(temp[0]);
+        String target = temp[1];
+
+        temp = br.readLine().split(" ");
+        long r = Long.parseLong(temp[0]);
+        long c = Long.parseLong(temp[1]);
+
+        go(0, 0, (long) Math.pow(2, d), target, "");
+        go2(0, 0, (long) Math.pow(2, d), r, c, "");
+        System.out.print(ans.equals("") ? -1 : ans);
+    }
+}
