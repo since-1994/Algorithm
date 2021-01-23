@@ -3,15 +3,14 @@ import java.util.*;
 
 class baek__1654 {
 
-    static int[] lines;
+    static int k;
+    static int[] seons;
 
-    static int calc(int length) {
-        int cnt = 0;
-
-        for (int line : lines) {
-            cnt += (line / length);
+    static long calc(long mid) {
+        long cnt = 0;
+        for (int i = 0; i < k; i++) {
+            cnt += seons[i] / mid;
         }
-
         return cnt;
     }
 
@@ -19,36 +18,31 @@ class baek__1654 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String[] temp = br.readLine().split(" ");
+        k = Integer.parseInt(temp[0]);
+        int n = Integer.parseInt(temp[1]);
 
-        int n = Integer.parseInt(temp[0]);
-        int k = Integer.parseInt(temp[1]);
-
-        lines = new int[n];
-
-        for (int i = 0; i < n; i++) {
-            lines[i] = Integer.parseInt(br.readLine());
+        long l = 1;
+        long r = -1;
+        seons = new int[k];
+        for (int i = 0; i < k; i++) {
+            seons[i] = Integer.parseInt(br.readLine());
+            r = r == -1 ? seons[i] : Math.max(seons[i], r);
         }
-
-        Arrays.sort(lines);
-
-        int start = 1;
-        int end = lines[lines.length - 1];
-        int i = 0;
-
-        while (start < end) {
-            i++;
-            if (i > 30)
-                break;
-            System.out.println(start + " " + end);
-            int mid = (start + end) / 2;
-
-            if (calc(mid) < k) {
-                end = mid - 1;
-            } else if (calc(mid) > k) {
-                start = mid;
+        long ans = -1;
+        while (l <= r) {
+            long mid = (l + r) / 2;
+            long now = calc(mid);
+            if (now > n) {
+                l = mid + 1;
+                ans = ans == -1 ? mid : Math.max(ans, mid);
+            } else if (now == n) {
+                l = mid + 1;
+                ans = ans == -1 ? mid : Math.max(ans, mid);
+            } else if (now < n) {
+                r = mid - 1;
             }
         }
 
-        System.out.print(end);
+        System.out.print(ans);
     }
 }

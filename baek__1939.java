@@ -83,3 +83,97 @@
 // System.out.print(ans);
 // }
 // }
+
+// import java.io.*;
+// import java.util.*;
+
+// class Sum {
+//     int x;
+//     int limit;
+
+//     Sum(int x, int limit) {
+//         this.x = x;
+//         this.limit = limit;
+//     }
+// }
+
+// class baek__1939 {
+//     static int start;
+//     static int end;
+//     static int n;
+
+//     static ArrayList<Sum>[] list;
+//     static boolean[] check;
+
+//     static boolean calc(int weight) {
+//         Arrays.fill(check, false);
+
+//         Queue<Integer> q = new LinkedList<>();
+//         q.add(start);
+//         check[start] = true;
+
+//         while (!q.isEmpty()) {
+//             int now = q.poll();
+//             for (Sum next : list[now]) {
+//                 if (next.limit < weight)
+//                     continue;
+//                 if (check[next.x])
+//                     continue;
+//                 check[next.x] = true;
+//                 q.add(next.x);
+//             }
+//         }
+
+//         if (check[end])
+//             return true;
+
+//         return false;
+
+//     }
+
+//     public static void main(String[] args) throws IOException {
+//         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+//         String[] temp = br.readLine().split(" ");
+//         n = Integer.parseInt(temp[0]);
+//         int m = Integer.parseInt(temp[1]);
+
+//         check = new boolean[n + 1];
+//         list = new ArrayList[n + 1];
+//         for (int i = 0; i < n + 1; i++) {
+//             list[i] = new ArrayList<>();
+//         }
+//         int l = 1;
+//         int r = 0;
+//         for (int i = 0; i < m; i++) {
+//             temp = br.readLine().split(" ");
+
+//             int u = Integer.parseInt(temp[0]);
+//             int v = Integer.parseInt(temp[1]);
+//             int w = Integer.parseInt(temp[2]);
+//             r = Math.max(w, r);
+
+//             list[u].add(new Sum(v, w));
+//             list[v].add(new Sum(u, w));
+//         }
+
+//         temp = br.readLine().split(" ");
+//         start = Integer.parseInt(temp[0]);
+//         end = Integer.parseInt(temp[1]);
+
+//         int ans = 1;
+
+//         while (l <= r) {
+//             int mid = (l + r) / 2;
+
+//             if (calc(mid)) {
+//                 l = mid + 1;
+//                 ans = Math.max(ans, mid);
+//             } else {
+//                 r = mid - 1;
+//             }
+//         }
+
+//         System.out.print(ans);
+//     }
+}
