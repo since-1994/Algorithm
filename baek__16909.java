@@ -9,51 +9,6 @@ class baek__16909 {
     static int[] minL;
     static int[] maxL;
 
-    static void findMin(Stack<Integer> stack, int i, boolean isRight) {
-
-        while (!stack.empty() && a[stack.peek()] > a[i]) {
-            int j = stack.pop();
-            if (isRight)
-                minR[j] = i - 1;
-            else
-                minL[j] = i + 1;
-        }
-        stack.push(i);
-
-        if (isRight && i == a.length - 1) {
-            while (!stack.empty()) {
-                minR[stack.pop()] = a.length - 1;
-            }
-        } else if (!isRight && i == 0) {
-            while (!stack.empty()) {
-                minL[stack.pop()] = 0;
-            }
-        }
-    }
-
-    static void findMax(Stack<Integer> stack, int i, boolean isRight) {
-
-        while (!stack.empty() && a[stack.peek()] < a[i]) {
-            int j = stack.pop();
-            if (isRight)
-                maxR[j] = i - 1;
-            else
-                maxL[j] = i + 1;
-        }
-        stack.push(i);
-
-        if (isRight && i == a.length - 1) {
-            while (!stack.empty()) {
-                maxR[stack.pop()] = a.length - 1;
-            }
-        } else if (!isRight && i == 0) {
-            while (!stack.empty()) {
-                maxL[stack.pop()] = 0;
-            }
-        }
-
-    }
-
     static long calc(int n) {
         long returnValue = 1L * n * (n + 1) / 2;
         return returnValue;
@@ -67,9 +22,13 @@ class baek__16909 {
 
         a = new int[n];
         minR = new int[n];
+        Arrays.fill(minR, n - 1);
         maxR = new int[n];
+        Arrays.fill(maxR, n - 1);
         minL = new int[n];
+        Arrays.fill(minL, 0);
         maxL = new int[n];
+        Arrays.fill(maxL, 0);
 
         for (int i = 0; i < n; i++) {
             a[i] = Integer.parseInt(temp[i]);
@@ -79,16 +38,53 @@ class baek__16909 {
         Stack<Integer> stackMax = new Stack<>();
 
         for (int i = 0; i < n; i++) {
-            findMin(stackMin, i, true);
-            findMax(stackMax, i, true);
+            while (!stackMin.empty() && a[stackMin.peek()] >= a[i]) {
+                minR[stackMin.pop()] = i - 1;
+            }
+            stackMin.push(i);
+
+            while (!stackMax.empty() && a[stackMax.peek()] <= a[i]) {
+                maxR[stackMax.pop()] = i - 1;
+            }
+            stackMax.push(i);
         }
 
+        stackMin.clear();
+        stackMax.clear();
+
         for (int i = n - 1; i >= 0; i--) {
-            findMin(stackMin, i, false);
-            findMax(stackMax, i, false);
+            while (!stackMin.empty() && a[stackMin.peek()] > a[i]) {
+                minL[stackMin.pop()] = i + 1;
+            }
+            stackMin.push(i);
+
+            while (!stackMax.empty() && a[stackMax.peek()] < a[i]) {
+                maxL[stackMax.pop()] = i + 1;
+            }
+            stackMax.push(i);
         }
 
         long answer = 0;
+
+        // for (int i = 0; i < n; i++) {
+        // System.out.print(minL[i] + " ");
+        // }
+        // System.out.println();
+
+        // for (int i = 0; i < n; i++) {
+        // System.out.print(minR[i] + " ");
+        // }
+        // System.out.println();
+
+        // for (int i = 0; i < n; i++) {
+        // System.out.print(maxL[i] + " ");
+        // }
+        // System.out.println();
+
+        // for (int i = 0; i < n; i++) {
+        // System.out.print(maxR[i] + " ");
+        // }
+        // System.out.println();
 
         for (int i = 0; i < n; i++) {
             int l = maxL[i];
