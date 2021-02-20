@@ -2,7 +2,7 @@
 // import java.util.*;
 
 // class Node {
-// int[] children;
+// int children[];
 // boolean valid;
 
 // Node() {
@@ -13,12 +13,13 @@
 // }
 
 // class Trie {
+
 // ArrayList<Node> trie;
 // int root;
 
 // int init() {
-// Node node = new Node();
-// trie.add(node);
+// Node x = new Node();
+// trie.add(x);
 // return trie.size() - 1;
 // }
 
@@ -27,39 +28,43 @@
 // root = init();
 // }
 
-// void add(int node, String s, int index) {
-// if (index == s.length()) {
-// trie.get(node).valid = true;
+// void add(String s, int idx, int cur) {
+// if (idx == s.length()) {
+// trie.get(cur).valid = true;
 // return;
 // }
-// int c = s.charAt(index) - 'a';
-// if (trie.get(node).children[c] == -1) {
-// int next = init();
-// trie.get(node).children[c] = next;
+
+// int c = s.charAt(idx) - 'a';
+// if (trie.get(cur).children[c] == -1) {
+// Node x = new Node();
+// trie.add(x);
+// trie.get(cur).children[c] = trie.size() - 1;
 // }
-// int child = trie.get(node).children[c];
-// add(child, s, index + 1);
+
+// int next = trie.get(cur).children[c];
+// add(s, idx + 1, next);
 // }
 
 // void add(String s) {
-// add(root, s, 0);
+// add(s, 0, root);
 // }
 
-// boolean search(int node, String s, int index) {
-// if (index == s.length()) {
-// return trie.get(node).valid;
+// boolean search(String s, int idx, int cur) {
+// if (idx == s.length()) {
+// return trie.get(cur).valid;
 // }
 
-// int c = s.charAt(index) - 'a';
-// if (trie.get(node).children[c] == -1)
+// int c = s.charAt(idx) - 'a';
+// if (trie.get(cur).children[c] == -1) {
 // return false;
+// }
 
-// int child = trie.get(node).children[c];
-// return search(child, s, index + 1);
+// int next = trie.get(cur).children[c];
+// return search(s, idx + 1, next);
 // }
 
 // boolean search(String s) {
-// return search(root, s, 0);
+// return search(s, 0, root);
 // }
 // }
 
@@ -69,7 +74,6 @@
 // BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
 // String[] temp = br.readLine().split(" ");
-
 // int n = Integer.parseInt(temp[0]);
 // int m = Integer.parseInt(temp[1]);
 
@@ -78,13 +82,11 @@
 // for (int i = 0; i < n; i++) {
 // trie.add(br.readLine());
 // }
-
-// int answer = 0;
+// int cnt = 0;
 // for (int i = 0; i < m; i++) {
-// if (trie.search(br.readLine()))
-// answer++;
+// cnt = trie.search(br.readLine()) ? cnt + 1 : cnt;
 // }
 
-// System.out.print(answer);
+// System.out.print(cnt);
 // }
 // }
