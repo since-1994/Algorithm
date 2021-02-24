@@ -24,39 +24,17 @@ class baek__2003 {
         int cnt = 0;
         int sum = nums[0];
         while (true) {
-            if (sum == m) {
+            if (sum == m)
                 cnt++;
-                sum -= nums[i];
-                if (i == j) {
-                    i++;
-                    j++;
-                    if (j == n)
-                        break;
-                    sum = nums[i];
-                } else {
-                    i++;
-                }
-            } else if (sum < m) {
+            if (sum < m) {
                 j++;
-                if (j == n)
+                if (j == nums.length)
                     break;
                 sum += nums[j];
             } else {
                 sum -= nums[i];
-                if (i == j) {
-                    i++;
-                    j++;
-                    if (j == n)
-                        break;
-                    sum = nums[i];
-                } else {
-                    i++;
-                }
+                i++;
             }
-        }
-
-        if (sum == m) {
-            cnt++;
         }
 
         System.out.print(cnt);
