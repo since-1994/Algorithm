@@ -3,17 +3,19 @@
 
 // class Pair {
 // boolean prefix;
-// int cnt;
+// long cnt;
+// int node;
 
-// Pair(boolean prefix, int cnt) {
+// Pair(boolean prefix, long cnt, int node) {
 // this.prefix = prefix;
 // this.cnt = cnt;
+// this.node = node;
 // }
 // }
 
 // class Node {
 // int[] children;
-// int count;
+// long count;
 
 // Node() {
 // children = new int[26];
@@ -59,26 +61,19 @@
 // add(s, 0, root);
 // }
 
-// Pair search(String s, int idx, int cur) {
-// if (idx == s.length()) {
-// return new Pair(true, trie.get(cur).count);
-// }
+// Pair search(char t, int cur) {
 
-// int c = s.charAt(idx) - 'a';
+// int c = t - 'a';
 // if (trie.get(cur).children[c] == -1) {
-// return new Pair(false, -1);
+// return new Pair(false, -1, -1);
 // }
 // int nex = trie.get(cur).children[c];
-// return search(s, idx + 1, nex);
-// }
-
-// Pair search(String s) {
-// return search(s, 0, root);// 0번째에 0이라고 생각하자.
+// return new Pair(true, trie.get(nex).count, nex);
 // }
 // }
 
 // class baek__17365 {
-// static long m = 1000000007;
+// static long m = 1000000007L;
 // static Trie trie;
 // static String s;
 // static long[] d;
@@ -94,16 +89,18 @@
 
 // d[start] = 0;
 
+// int node = 0;
+
 // for (int i = start; i < s.length(); i++) {
 // if (i - start + 1 > 300)
 // break;
-// String t = s.substring(start, i + 1);
-// Pair pair = trie.search(t);
+// Pair pair = trie.search(s.charAt(i), node);
 // if (pair.prefix) {
-// d[start] += pair.cnt * go(i + 1) % m;
+// node = pair.node;
+// d[start] += 1L * pair.cnt * go(i + 1) % m;
 // d[start] %= m;
 // } else {
-// return d[start];
+// break;
 // }
 // }
 
