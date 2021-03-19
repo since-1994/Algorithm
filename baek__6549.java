@@ -8,53 +8,49 @@ class baek__6549 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        long answer = 0;
+
         while (true) {
             String[] temp = br.readLine().split(" ");
-
             int n = Integer.parseInt(temp[0]);
-
             if (n == 0)
                 break;
 
-            int[] heights = new int[n];
+            int[] building = new int[n];
             for (int i = 0; i < n; i++) {
-                heights[i] = Integer.parseInt(temp[i + 1]);
+                building[i] = Integer.parseInt(temp[i + 1]);
             }
 
-            Stack<Integer> stack = new Stack<>();
-            long answer = 0;
+            Stack<Integer> st = new Stack<>();
 
+            answer = 0;
             for (int i = 0; i < n; i++) {
-                if (stack.empty()) {
-                    stack.push(i);
-                } else {
-                    if (heights[stack.peek()] <= heights[i]) {
-                        stack.push(i);
+                if (st.isEmpty())
+                    st.push(i);
+                else {
+                    if (building[st.peek()] <= building[i]) {
+                        st.push(i);
                     } else {
-                        while (!stack.empty() && heights[stack.peek()] > heights[i]) {
-                            int h = heights[stack.pop()];
-                            int right = i - 1;
-                            int left = 0;
-                            if (!stack.empty())
-                                left = stack.peek() + 1;
-                            long area = (long) (right - left + 1) * h;
-                            answer = Math.max(area, answer);
+                        int right = i - 1;
+                        int height = building[st.pop()];
+                        int left = st.isEmpty() ? 0 : st.peek() + 1;
+                        answer = Math.max(answer, (long) (right - left + 1) * height);
+                        while (!st.isEmpty() && building[st.peek()] > building[i]) {
+                            height = building[st.pop()];
+                            left = st.isEmpty() ? 0 : st.peek() + 1;
+                            answer = Math.max(answer, (long) (right - left + 1) * height);
                         }
-                        stack.push(i);
+                        st.push(i);
                     }
                 }
             }
-            int right = stack.peek();
 
-            while (!stack.empty()) {
-                int h = heights[stack.pop()];
-                int left = 0;
-                if (!stack.empty())
-                    left = stack.peek() + 1;
-                long area = (long) (right - left + 1) * h;
-                answer = Math.max(area, answer);
+            int right = n - 1;
+            while (!st.isEmpty()) {
+                int height = building[st.pop()];
+                int left = st.isEmpty() ? 0 : st.peek() + 1;
+                answer = Math.max(answer, (right - left + 1) * (long) height);
             }
-
             sb.append(answer + "\n");
         }
         System.out.print(sb);
